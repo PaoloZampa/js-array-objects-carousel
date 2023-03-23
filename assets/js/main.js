@@ -47,15 +47,71 @@ const images = [
     }
 ];
 
-// funzione aggiungere immagine
-function addImage() {
-    images.forEach((element) =>{
-    const imageEl = element.image
-    console.log(imageEl);
-    const imageSection = document.querySelector('.images');
-    const imageMarkUp = `<img class="img-fluid" src="./assets/${imageEl}" alt=""></img>`
-    imageSection.innerHTML += imageMarkUp
-    })
+let activeImage = 0
+
+for (let i = 0; i < images.length; i++) {
+    const arrayElement = images[i];
+    const imageSection = document.querySelector('.images')
+    let activeClasses = ''
+
+    if (i === activeImage) {
+        activeClasses += " active";
+    }
+    
+    const markup = `
+    <img class="img-fluid${activeClasses}" src="./assets/${arrayElement.image}" alt="">
+                        <h3 class="${activeClasses}">${arrayElement.title}</h3>
+                        <p class="${activeClasses}">${arrayElement.text}</p>
+    `
+    imageSection.innerHTML += markup
+
+
 }
 
-addImage()
+// funzione aggiungere immagine
+/* function addImage() {
+    images.forEach((element) =>{
+    
+    const imageEl = element.image
+    console.log(imageEl);
+
+    const imageSection = document.querySelector('.images');
+
+    let imgClasses = "img-fluid"
+
+    const imageMarkUp = `<img class="${imgClasses}" src="./assets/${imageEl}" alt=""></img>`
+    
+    if (element.image === activeImage) {
+        imgClasses += " active";
+    }
+
+    imageSection.innerHTML += imageMarkUp
+    })
+} */
+
+/* addImage()
+
+//funzione tasto prev
+function prevImage() {
+    const prevEl = document.querySelector('.prev')
+    prevEl.addEventListener('click', function () {
+        console.log('cliccato prev')
+        // selezione slide
+        const currentSlide = slideImages[activeImage]
+        console.log(currentSlide);
+        // rimuovo active
+        currentSlide.classList.remove('active');
+        // decremento
+        activeImage--;
+        //loop
+        if (activeImage < 0) {
+            activeImage = slideImages.length - 1;
+        }
+        // select the next slide
+        const nextImage = slideImages[activeImage]
+        // aggiungo active
+        console.log(nextImage);
+        nextImage.classList.add('active');
+
+    })
+} */

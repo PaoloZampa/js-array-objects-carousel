@@ -1,0 +1,5 @@
+.images img:not(.active), 
+.images h3:not(.active), 
+.images p:not(.active) {
+    display: none;
+}
