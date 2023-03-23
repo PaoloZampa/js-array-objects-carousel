@@ -55,11 +55,11 @@ for (let i = 0; i < images.length; i++) {
     let activeClasses = ''
 
     if (i === activeImage) {
-        activeClasses += " active";
+        activeClasses += "active";
     }
     
     const markup = `
-    <img class="img-fluid${activeClasses}" src="./assets/${arrayElement.image}" alt="">
+    <img class="img-fluid ${activeClasses}" src="./assets/${arrayElement.image}" alt="">
                         <h3 class="${activeClasses}">${arrayElement.title}</h3>
                         <p class="${activeClasses}">${arrayElement.text}</p>
     `
@@ -67,6 +67,56 @@ for (let i = 0; i < images.length; i++) {
 
 
 }
+
+// seleziono le slides
+const slideImages = document.querySelectorAll('.slider > .images > img');
+
+// click next
+const nextEl = document.querySelector('.next')
+nextEl.addEventListener('click', function () {
+    console.log('cliccato next')
+    // selezione slide
+    const currentSlide = slideImages[activeImage]
+    console.log(currentSlide);
+    // rimuovo active
+    currentSlide.classList.remove('active');
+    // incremento
+    activeImage++;
+    //loop
+    if (activeImage >= slideImages.length) {
+        activeImage = 0;
+    }
+    // seleziono prossima slide
+    const nextImage = slideImages[activeImage]
+    // aggiungo active
+    console.log(nextImage);
+    nextImage.classList.add('active');
+    
+})
+
+// click prev
+const prevEl = document.querySelector('.prev')
+prevEl.addEventListener('click', function () {
+    console.log('cliccato prev')
+    // selezione slide
+    const currentSlide = slideImages[activeImage]
+    console.log(currentSlide);
+    // rimuovo active
+    currentSlide.classList.remove('active');
+    // decremento
+    activeImage--;
+    //loop
+    if (activeImage < 0) {
+        activeImage = slideImages.length - 1;
+    }
+    // select the next slide
+    const nextImage = slideImages[activeImage]
+    // aggiungo active
+    console.log(nextImage);
+    nextImage.classList.add('active');
+    
+})
+
 
 // funzione aggiungere immagine
 /* function addImage() {
